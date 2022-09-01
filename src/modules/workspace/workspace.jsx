@@ -7,6 +7,8 @@ import {
 } from 'react-reflex'
 
 import 'react-reflex/styles.css'
+import Tasks from "../../pages/tasks/tasks";
+import Task from "../../pages/task/task";
 
 const Workspace = (props) => {
 
@@ -18,17 +20,13 @@ const Workspace = (props) => {
             <ReflexContainer orientation="vertical" >
 
                 <ReflexElement className="left-pane" minSize={50}>
-                    <div className="pane-content">
-                        Left Pane (resizeable)
-                    </div>
+                    <Tasks/>
                 </ReflexElement>
 
                 <ReflexSplitter/>
 
                 <ReflexElement className="right-pane" minSize={50}>
-                    <div className="pane-content">
-                        Right Pane (resizeable)
-                    </div>
+                    <Task/>
                 </ReflexElement>
 
             </ReflexContainer>
