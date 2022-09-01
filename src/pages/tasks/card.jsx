@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 
 
 const TaskCard = (props) => {
-    const {title} = props;
+    const {title, onClick} = props;
 
     return (
         <Card sx={{marginY: '20px', maxWidth: '400px'}}>
@@ -30,7 +30,7 @@ const TaskCard = (props) => {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Открыть задачу</Button>
+                <Button size="small" onClick={onClick}>Открыть задачу</Button>
             </CardActions>
         </Card>
     )

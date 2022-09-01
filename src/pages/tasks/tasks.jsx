@@ -1,11 +1,17 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import TaskCard from "./card";
+import {moduleNames} from "../../utils/moduleNames";
 
 
 
 const Tasks = (props) => {
 
+    const {onClick} = props;
+
+    const onTaskClick = (e) => {
+        onClick(moduleNames.task, e);
+    }
 
     return(
         <Box component="div"
@@ -18,10 +24,10 @@ const Tasks = (props) => {
             </h1>
 
             <Box component="div">
-                <TaskCard/>
-                <TaskCard title={'Поменять договор'}/>
-                <TaskCard title={'Попить кофе'}/>
-                <TaskCard title={'Еще задача'}/>
+                <TaskCard onClick={onTaskClick}/>
+                <TaskCard onClick={onTaskClick} title={'Поменять договор'}/>
+                <TaskCard onClick={onTaskClick} title={'Попить кофе'}/>
+                <TaskCard onClick={onTaskClick} title={'Еще задача'}/>
             </Box>
         </Box>
     )

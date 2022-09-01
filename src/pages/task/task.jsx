@@ -1,11 +1,20 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import {Button, Typography} from "@mui/material";
+import {moduleNames} from "../../utils/moduleNames";
 
 
 
 const Task = (props) => {
+    const {onClick} = props;
 
+    const onTableInit = (e) => {
+        onClick(moduleNames.tables, e);
+    }
+
+    const onTextInit = (e) => {
+        onClick(moduleNames.text, e);
+    }
 
     return(
         <Box component="div"
@@ -28,7 +37,7 @@ const Task = (props) => {
                 </Typography>
             </Box>
             <Box component="div" sx={{ pb: 2 }}>
-                <Button size="small">Перейти к таблицам</Button>
+                <Button size="small" onClick={onTableInit}>Перейти к таблицам</Button>
             </Box>
             <Box component="main" sx={{ py: 2 }}>
                 <Typography>
@@ -42,7 +51,7 @@ const Task = (props) => {
                 </Typography>
             </Box>
             <Box component="div" sx={{ pb: 2 }}>
-                <Button size="small">Перейти к тексту</Button>
+                <Button size="small" onClick={onTextInit}>Перейти к тексту</Button>
             </Box>
         </Box>
     )
