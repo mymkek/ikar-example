@@ -1,10 +1,9 @@
 import React from 'react';
-import {Button, Card, CardActions, CardContent, CardHeader, Typography} from "@mui/material";
-import Box from "@mui/material/Box";
+import {Button, Card, CardActions, CardContent, CardHeader, Chip, Typography} from "@mui/material";
 
 
 const TaskCard = (props) => {
-    const {title, onClick} = props;
+    const {title, onClick, type} = props;
 
     return (
         <Card sx={{marginY: '20px', maxWidth: '400px'}}>
@@ -17,17 +16,12 @@ const TaskCard = (props) => {
             />
 
             <CardContent>
-                <Typography variant="h5" component="div">
-                    Описание задачи
+                {type === '1' ? <Chip label="Срочно" color="error"/> : <Chip label="Не срочно" color="success"/>}
+                <Typography variant="body2" component="div">
+                    Описание задачи какой то небольшой текст
                 </Typography>
-                <Typography sx={{mb: 1.5}} color="text.secondary">
-                    adjective
-                </Typography>
-                <Typography variant="body2">
-                    well meaning and kindly.
-                    <br/>
-                    {'"a benevolent smile"'}
-                </Typography>
+
+
             </CardContent>
             <CardActions>
                 <Button size="small" onClick={onClick}>Открыть задачу</Button>

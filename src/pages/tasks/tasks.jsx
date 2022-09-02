@@ -24,8 +24,8 @@ const Tasks = (props) => {
             </h1>
 
             <Box component="div">
-                <TaskCard onClick={onTaskClick}/>
-                <TaskCard onClick={onTaskClick} title={'Поменять договор'}/>
+                <TaskCard onClick={onTaskClick} type="1"/>
+                <TaskCard onClick={onTaskClick} type="1" title={'Поменять договор'}/>
                 <TaskCard onClick={onTaskClick} title={'Попить кофе'}/>
                 <TaskCard onClick={onTaskClick} title={'Еще задача'}/>
             </Box>
