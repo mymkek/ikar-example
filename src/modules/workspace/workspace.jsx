@@ -4,6 +4,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import 'react-reflex/styles.css'
 import Tasks from "../../pages/tasks/tasks";
 import styled from "@emotion/styled";
+import {ReflexContainer, ReflexElement, ReflexSplitter} from "react-reflex";
 
 const CloseButton = styled.button`
   color: black;
@@ -18,7 +19,6 @@ const CloseButton = styled.button`
 const Workspace = (props) => {
 
     const {dispatchRouteEvent, state, onInitNewModule} = props;
-
 
 
     useEffect(() => {
@@ -49,12 +49,11 @@ const Workspace = (props) => {
             display: 'flex'
         }}>
 
-
+            <ReflexContainer orientation="vertical">
                 {state?.w1 &&
+                    <ReflexElement className="left-pane">
                         <Box
                             sx={{
-                                width: state?.w2 ? '30%' : '100%',
-                                overflowY: 'scroll',
                                 position: 'relative'
                             }}
                             component="div"
@@ -66,11 +65,17 @@ const Workspace = (props) => {
 
                             {state.w1}
                         </Box>
+                    </ReflexElement>
                 }
+
                 {state?.w2 &&
+                    <ReflexSplitter propagate={true}/>
+                }
+
+                {state?.w2 &&
+                    <ReflexElement className="right-pane">
                         <Box
                             sx={{
-                                width: '70%',
                                 height: '100%',
                                 borderLeft: '1px solid #bbb',
                                 position: 'relative'
@@ -81,9 +86,10 @@ const Workspace = (props) => {
                                          onClick={removeSecondPane}><CloseIcon/></CloseButton>
                             {state.w2}
                         </Box>
+                    </ReflexElement>
                 }
 
-
+            </ReflexContainer>
         </Box>
     )
 }
