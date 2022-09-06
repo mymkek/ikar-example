@@ -1,13 +1,11 @@
 import React from 'react';
 import Box from "@mui/material/Box";
 import styled from '@emotion/styled';
-import AcUnitIcon from '@mui/icons-material/AcUnit';
-import WindPowerIcon from '@mui/icons-material/WindPower';
-import TwitterIcon from '@mui/icons-material/Twitter';
 import ThunderstormIcon from '@mui/icons-material/Thunderstorm';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import TableChartIcon from '@mui/icons-material/TableChart';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {modulesMap} from "../../App";
 
 const Button = styled.button`
@@ -20,7 +18,7 @@ const Button = styled.button`
 
 
 const Sidebar = (props) => {
-    const {dispatchRouteEvent, onInitNewModule} = props;
+    const {dispatchRouteEvent, onInitNewModule, goBack} = props;
 
     const onCLickMenuItem = (Component) => {
         console.log(Component)
@@ -36,20 +34,31 @@ const Sidebar = (props) => {
     return (
         <Box component="nav" sx={{
             flex: 0,
+            display: 'flex',
+            justifyContent: 'space-between',
+            flexDirection: 'column',
             background: '#476bf0'
         }}>
-            <Button onClick={() => onCLickMenuItem(modulesMap['tasks'])} title="Задачи">
-                <DashboardIcon/>
-            </Button>
-            <Button onClick={() => onCLickMenuItem(modulesMap['task'])} title="Задача">
-                <CheckBoxIcon/>
-            </Button>
-            <Button onClick={() => onCLickMenuItem(modulesMap['tables'])} title="Таблицы">
-                <TableChartIcon/>
-            </Button>
-            <Button onClick={() => onCLickMenuItem(modulesMap['text'])} title="Текст">
-                <ThunderstormIcon/>
-            </Button>
+            <Box component="nav">
+                <Button onClick={() => onCLickMenuItem(modulesMap['tasks'])} title="Задачи">
+                    <DashboardIcon/>
+                </Button>
+                <Button onClick={() => onCLickMenuItem(modulesMap['task'])} title="Задача">
+                    <CheckBoxIcon/>
+                </Button>
+                <Button onClick={() => onCLickMenuItem(modulesMap['tables'])} title="Таблицы">
+                    <TableChartIcon/>
+                </Button>
+                <Button onClick={() => onCLickMenuItem(modulesMap['text'])} title="Текст">
+                    <ThunderstormIcon/>
+                </Button>
+            </Box>
+
+            <Box component="div">
+                <Button onClick={goBack} title="Вернуться назад">
+                    <ArrowBackIcon/>
+                </Button>
+            </Box>
         </Box>
     )
 }

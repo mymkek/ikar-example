@@ -6,7 +6,8 @@ import Tasks from "./pages/tasks/tasks";
 import Task from "./pages/task/task";
 import Tables from "./pages/tables/tables";
 import Text from "./pages/text/text";
-import React, {useReducer} from "react";
+import React, {useEffect, useReducer, useState} from "react";
+
 
 export const modulesMap = {
     tasks: Tasks,
@@ -36,6 +37,8 @@ function App() {
                     ...state,
                     w2: action.payload,
                 };
+            case 'setState':
+                return action.payload;
             case 'removeFirstPane':
                 return {
                     w1: state.w2,
@@ -59,6 +62,12 @@ function App() {
 
     const [state, dispatch] = useReducer(reducer, panes);
 
+    const [stepsState, setStepsState] = useState([]);
+
+    useEffect(() => {
+        setStepsState([...stepsState, state])
+    }, [state]);
+
     const onInitNewModule = (moduleName, e) => {
         const isCtrlKeyPressed = e.ctrlKey;
         const Component = modulesMap[moduleName];
@@ -77,12 +86,25 @@ function App() {
         }
     }
 
-  return (
-      <AppContainer>
-        <Sidebar dispatchRouteEvent={dispatch} state={state} onInitNewModule={onInitNewModule}/>
-        <Workspace dispatchRouteEvent={dispatch} state={state} onInitNewModule={onInitNewModule}/>
-      </AppContainer>
-  );
+    const goBack = () => {
+        console.log(stepsState);
+        dispatch({
+            type: 'setState',
+            payload: stepsState[stepsState.length - 2]
+        });
+
+        const updatedState = [...stepsState];
+        updatedState.pop();
+        updatedState.pop();
+        setStepsState(updatedState);
+    }
+
+    return (
+        <AppContainer>
+            <Sidebar dispatchRouteEvent={dispatch} state={state} onInitNewModule={onInitNewModule} goBack={goBack}/>
+            <Workspace dispatchRouteEvent={dispatch} state={state} onInitNewModule={onInitNewModule}/>
+        </AppContainer>
+    );
 }
 
 export default App;
