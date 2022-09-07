@@ -7,6 +7,7 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import TableChartIcon from '@mui/icons-material/TableChart';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {modulesMap} from "../../App";
+import {Badge} from "@mui/material";
 
 const Button = styled.button`
   color: white;
@@ -21,7 +22,6 @@ const Sidebar = (props) => {
     const {dispatchRouteEvent, onInitNewModule, goBack} = props;
 
     const onCLickMenuItem = (Component) => {
-        console.log(Component)
         dispatchRouteEvent({
             type: 'removeSecondPane',
         })
@@ -41,7 +41,9 @@ const Sidebar = (props) => {
         }}>
             <Box component="nav">
                 <Button onClick={() => onCLickMenuItem(modulesMap['tasks'])} title="Задачи">
-                    <DashboardIcon/>
+                    <Badge badgeContent={4} color="error">
+                        <DashboardIcon/>
+                    </Badge>
                 </Button>
                 <Button onClick={() => onCLickMenuItem(modulesMap['task'])} title="Задача">
                     <CheckBoxIcon/>
